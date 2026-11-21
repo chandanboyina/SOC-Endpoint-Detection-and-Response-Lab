@@ -86,6 +86,4 @@ All testing should be performed only on systems you own or are explicitly author
 
 See [Security & Privacy](docs/security-and-privacy.md).
 
-## Contact
 
-Add your professional email and LinkedIn URL here before sharing this repository with recruiters or prospective clients.
