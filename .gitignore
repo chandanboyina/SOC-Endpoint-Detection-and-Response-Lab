@@ -1,0 +1,33 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+secrets/
+credentials/
+
+# Logs and security telemetry
+*.log
+*.evtx
+*.etl
+*.pcap
+*.pcapng
+eve.json
+archives/
+logs/
+
+# Backups and temporary files
+*.bak
+*.old
+*.tmp
+*.swp
+~*
+
+# Operating system / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
