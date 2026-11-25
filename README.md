@@ -100,7 +100,7 @@ See the [investigation record](docs/investigations/defender-atomic-t1059-001.md)
 | Sigma detections | Planned |
 | TheHive case-management integration | Planned |
 
-Detailed notes: [Architecture](docs/architecture.md) · [Implementation status](docs/implementation-status.md) · [Evidence guide](evidence/README.md).
+Detailed notes: [Architecture](docs/architecture.md) · [Dashboard overview and snapshot notes](docs/dashboard-overview.md) · [Implementation status](docs/implementation-status.md) · [Evidence guide](evidence/README.md).
 
 ## Potential client demonstration scope
 
@@ -119,6 +119,7 @@ A real-world engagement would begin with discovery and authorization, followed b
 
 - `docs/architecture.md` — components and telemetry flow.
 - `docs/implementation-status.md` — what is configured and what remains unverified.
+- `docs/dashboard-overview.md` — SOC and threat-hunting dashboard descriptions, snapshot values, and report interpretation.
 - `docs/investigations/` — investigation notes and event evidence.
 - `docs/security-and-privacy.md` — safe lab operation and data handling.
 - `docs/service-demonstration-scope.md` — realistic proof-of-concept demonstration scope.
