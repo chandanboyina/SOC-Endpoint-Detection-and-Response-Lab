@@ -22,18 +22,6 @@ The custom SOC dashboard combines four KPI panels — Total Security Alerts, Hig
 - Top 10 Detection Rules
 - Top MITRE ATT&CK Techniques
 
-### Dashboard snapshot values
-
-| Capture | Total alerts | High-severity | Critical | Defender detections |
-|---|---:|---:|---:|---:|
-| SOC screenshot capture A | 8,703 | 543 | 177 | 135 |
-| SOC screenshot capture B | 8,381 | 509 | 172 | 135 |
-| OpenSearch PDF dashboard export | 8,651 | 533 | Not legible (displayed as truncated) | 135 |
-
-The screenshots and PDF are separate captures. Their counts are not simultaneous measurements and may differ due to capture time, refresh state, or selected time window. The PDF is labelled **OpenSearch Dashboards Reports** and shows the **Last 7 days** time range. Its Critical KPI is visibly truncated, so no exact value is claimed.
-
-The recent-alerts table is an aggregated view with endpoint, severity, rule ID, detection description, and alert-record count. It is not a complete chronological event timeline.
-
 ## Wazuh Threat Hunting dashboard
 
 The two Threat Hunting screenshots show:
