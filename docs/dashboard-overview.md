@@ -1,62 +1,83 @@
-# SOC and Threat-Hunting Dashboard Notes
+# SOC and Threat-Hunting Dashboard Evidence
 
-## Scope
+## Evidence set
 
-This note describes the dashboard screenshots and the one-page OpenSearch Dashboards PDF export supplied for the lab. The screenshots represent separate captures and should not be combined into one set of simultaneous measurements.
+The repository contains four dashboard screenshots under [evidence/screenshots](../evidence/screenshots/):
+
+- [SOC dashboard overview](../evidence/screenshots/soc-dashboard-overview.jpeg)
+- [SOC dashboard analytics](../evidence/screenshots/soc-dashboard-analytics.jpeg)
+- [Threat Hunting overview](../evidence/screenshots/threat-hunting-overview.jpeg)
+- [Threat Hunting analytics](../evidence/screenshots/threat-hunting-analytics.jpeg)
+
+The event export is stored at [evidence/reports/windows-defender-events-export.csv](../evidence/reports/windows-defender-events-export.csv).
 
 ## SOC – Security Operations Centre dashboard
 
-The custom dashboard contains four KPI panels:
+The custom SOC dashboard combines four KPI panels — Total Security Alerts, High-Severity Alerts, Critical Security Alerts, and Windows Defender Detections — with:
 
-- Total Security Alerts
-- High-Severity Alerts
-- Critical Security Alerts
-- Windows Defender Detections
+- Security Alerts Over Time
+- Recent Security Alerts table
+- Severity Distribution
+- Alerts by Agent
+- Top 10 Detection Rules
+- Top MITRE ATT&CK Techniques
 
-It also includes a time-series chart, a recent-alerts table, severity distribution, alerts by agent, top detection rules, and top MITRE ATT&CK techniques.
-
-### Observed dashboard snapshots
+### Dashboard snapshot values
 
 | Capture | Total alerts | High-severity | Critical | Defender detections |
 |---|---:|---:|---:|---:|
-| Dashboard screenshot (one capture) | 8,703 | 543 | 177 | 135 |
-| Dashboard screenshot (later capture) | 8,381 | 509 | 172 | 135 |
-| One-page PDF report export | 8,651 | 533 | Not fully legible in the exported image | 135 |
+| SOC screenshot capture A | 8,703 | 543 | 177 | 135 |
+| SOC screenshot capture B | 8,381 | 509 | 172 | 135 |
+| OpenSearch PDF dashboard export | 8,651 | 533 | Not legible (displayed as truncated) | 135 |
 
-These values differ because the screenshots and report are separate snapshots and may have been generated at different times or with different underlying refresh states. The critical count in the PDF preview is visually truncated; no exact value is inferred from it.
+The screenshots and PDF are separate captures. Their counts are not simultaneous measurements and may differ due to capture time, refresh state, or selected time window. The PDF is labelled **OpenSearch Dashboards Reports** and shows the **Last 7 days** time range. Its Critical KPI is visibly truncated, so no exact value is claimed.
 
-The dashboard screenshot also shows a recent-alerts table with endpoint, severity, rule ID, detection description, and alert-record count. This is an aggregated table view; it should not be described as a complete chronological incident timeline.
+The recent-alerts table is an aggregated view with endpoint, severity, rule ID, detection description, and alert-record count. It is not a complete chronological event timeline.
 
-## Threat Hunting dashboard
+## Wazuh Threat Hunting dashboard
 
-The supplied Threat Hunting dashboard screenshots show:
+The two Threat Hunting screenshots show:
 
-- Top 10 alert-level evolution over time, segmented by Wazuh rule level.
-- Top 10 MITRE ATT&CK techniques, presented with technique labels.
-- Top 5 agents by alert volume.
+- Top 10 Alert Level Evolution, with Wazuh rule levels plotted over time.
+- Top 10 MITRE ATT&CKs, presented as technique names.
+- Top 5 agents.
 - Alert evolution for the top 5 agents.
 
-A separate Threat Hunting overview screenshot shows these summary counters for its selected time range:
+The overview screenshot displays these counters for its selected **Last 7 days** view:
 
 | Counter | Displayed value |
 |---|---:|
-| Total alerts | 8,550 |
+| Total | 8,550 |
 | Level 12 or above alerts | 173 |
-| Authentication failures | 5 |
-| Authentication successes | 13 |
+| Authentication failure | 5 |
+| Authentication success | 13 |
 
-These are dashboard counters, not verified counts of unique incidents, compromised hosts, or successful attacks. Authentication events require contextual investigation before drawing conclusions.
+These are dashboard counters, not unique incident counts or proof of successful/failed compromise attempts.
 
-## Report supplied
+## Supplied report files and exports
 
-The supplied one-page PDF is titled **OpenSearch Dashboards Reports** and contains an export of the SOC dashboard. It shows total alerts (8,651), high-severity alerts (533), Windows Defender detections (135), and the associated time-series and distribution panels. Its critical-alert metric is clipped in the rendered report, so that figure is intentionally left unspecified here.
+### OpenSearch SOC dashboard report
 
-## Interpretation and client-facing presentation
+The supplied file is a one-page PDF titled **OpenSearch Dashboards Reports**. It exports the SOC dashboard and shows total alerts (8,651), high-severity alerts (533), Windows Defender detections (135), the alert trend, severity distribution, alerts by agent, top detection rules, and top MITRE ATT&CK techniques. The Critical KPI is clipped in the rendered report. The PDF binary has not yet been committed to this repository; see the repository README for the current downloadable evidence link status.
 
-The dashboards demonstrate practical monitoring and hunting workflows: alert-volume awareness, severity-based triage, endpoint comparison, detection-rule prioritization, and ATT&CK-oriented investigation pivots.
+### Wazuh agent threat-hunting report
 
-They do not, on their own, prove incident containment, prevention effectiveness, full telemetry coverage, or a production managed-SOC service. Client demonstrations should use a defined time range, sanitized data, and clearly stated log-source coverage.
+The supplied Wazuh PDF is a nine-page **Threat hunting report** for agent **PC1_W11** (agent ID **002**), Wazuh **v4.14.9**, managed by **wazuh-server**. It identifies Windows 11 Pro as the operating system and uses the query:
+
+`manager.name: wazuh-server AND agent.id: 002`
+
+The report's displayed time window is **2026-11-18T19:51:07 to 2026-11-25T19:51:07**. Its pages include alert-group evolution, alerts, top 5 alerts, top 5 rule groups, top 5 PCI DSS requirements, and multi-page alert summaries with rule IDs, descriptions, levels, and counts. The PDF binary has not yet been committed to this repository.
+
+### Windows Defender events CSV
+
+The committed CSV contains **58 records** for agent **PC1_W11** (agent ID **2**, IP shown in the export as **192.168.200.128**). All rows are Windows Defender **Event ID 1116**, Wazuh **rule ID 62123**, rule level **12**. It contains **57 unique detection IDs** and **57 unique threat names**; one threat/detection identifier appears twice. All records show action name **Not Applicable** and additional actions **No additional actions required**. These fields do not prove that Defender remediated the detected items.
+
+## Interpretation and client-facing use
+
+These artifacts demonstrate monitoring and investigation workflows: alert-volume awareness, time-series review, endpoint comparison, severity distribution, rule prioritization, ATT&CK-oriented pivots, agent-scoped hunting, and exportable evidence review.
+
+They do not independently prove incident containment, prevention effectiveness, complete telemetry coverage, or production managed-SOC capability. For a client demonstration, use an agreed time window, sanitized evidence, documented log-source coverage, and explicit authorization.
 
 ## Evidence handling
 
-Store sanitized screenshots under `evidence/screenshots/` and PDF exports under `evidence/reports/`. Use descriptive filenames and keep this note aligned with the actual files committed. Do not publish credentials, tokens, personal information, or sensitive internal network details.
+Screenshots are stored under `evidence/screenshots/`; the CSV export is stored under `evidence/reports/`. PDF source files were supplied in the conversation but are not currently present in the GitHub tree. Do not publish credentials, tokens, personal information, or sensitive internal network details.
