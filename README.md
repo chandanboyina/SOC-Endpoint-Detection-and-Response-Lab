@@ -50,7 +50,24 @@ A separate Wazuh **Threat Hunting** dashboard is used to explore alert-level tre
 
 These are investigative views over the selected Wazuh data and time range. One supplied Threat Hunting view shows 8,550 total alerts, 173 alerts at level 12 or above, 5 authentication failures, and 13 authentication successes for its displayed Last 7 days range. These are alert/event counters, not counts of unique incidents or confirmed attacks. They are not, by themselves, proof of a confirmed incident or of successful authentication attack prevention.
 
-### Dashboard screenshots\n\n**SOC – Security Operations Centre**\n\nThe screenshots below show the four KPI cards, alert trend, recent-alert table, severity distribution, agent comparison, top detection rules, and MITRE ATT&CK technique ranking.\n\n![SOC dashboard overview](evidence/screenshots/soc-dashboard-overview.jpeg)\n\n![SOC dashboard analytics](evidence/screenshots/soc-dashboard-analytics.jpeg)\n\n**Wazuh Threat Hunting**\n\nThese views show alert-level evolution, MITRE ATT&CK technique distribution, top agents, and alert evolution by agent.\n\n![Threat Hunting dashboard overview](evidence/screenshots/threat-hunting-overview.jpeg)\n\n![Threat Hunting dashboard analytics](evidence/screenshots/threat-hunting-analytics.jpeg)\n\n## Reports and exported evidence\n\nThe following exported data is included in the repository:\n\n- [Windows Defender events export (CSV)](evidence/reports/windows-defender-events-export.csv) — 58 Wazuh alert records from agent `PC1_W11` (agent ID `002`). The export contains Windows Defender Event ID `1116`, Wazuh rule ID `62123`, and 57 distinct detection IDs. All 58 records show action `Not Applicable` and additional actions `No additional actions required`; these fields should not be interpreted as evidence of remediation.\n\nThe two supplied PDF reports are described in [Dashboard and report evidence notes](docs/dashboard-overview.md). The PDF binaries are not yet present in the repository, so no download links are shown for them.\n\n## Lab architecture
+### **SOC – Security Operations Centre**
+The below show the four KPI cards, alert trend, recent-alert table, severity distribution, agent comparison, top detection rules, and MITRE ATT&CK technique ranking.
+
+![SOC dashboard overview](evidence/screenshots/soc-dashboard-overview.jpeg)\n\n![SOC dashboard analytics](evidence/screenshots/soc-dashboard-analytics.jpeg)
+
+**Wazuh Threat Hunting**
+These views show alert-level evolution, MITRE ATT&CK technique distribution, top agents, and alert evolution by agent.
+![Threat Hunting dashboard overview](evidence/screenshots/threat-hunting-overview.jpeg)
+
+![Threat Hunting dashboard analytics](evidence/screenshots/threat-hunting-analytics.jpeg)
+
+## Reports and exported evidence
+The following exported data is included in the repository:
+[Windows Defender events export (CSV)](evidence/reports/windows-defender-events-export.csv) 
+58 Wazuh alert records from agent `PC1_W11` (agent ID `002`). The export contains Windows Defender Event ID `1116`, Wazuh rule ID `62123`, and 57 distinct detection IDs. All 58 records show action `Not Applicable` and additional actions `No additional actions required`; these fields should not be interpreted as evidence of remediation.
+
+The two supplied PDF reports are described in [Dashboard and report evidence notes](docs/dashboard-overview.md). 
+The PDF binaries are not yet present in the repository, so no download links are shown for them.\n\n## Lab architecture
 
 ```mermaid
 flowchart LR
