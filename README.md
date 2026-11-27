@@ -55,6 +55,37 @@ The below show the four KPI cards, alert trend, recent-alert table, severity dis
 
 ![SOC dashboard overview](evidence/screenshots/soc-dashboard-overview.jpeg)\n\n![SOC dashboard analytics](evidence/screenshots/soc-dashboard-analytics.jpeg)
 
+
+
+## Suricata Network Intrusion Detection and Monitoring
+
+Suricata was deployed on the Windows 11 endpoint as a network-based intrusion detection system (NIDS), using Npcap for live packet capture on the selected network interface. Suricata's EVE JSON output was configured as a monitored log source in the Wazuh Agent, allowing network telemetry to be forwarded to the Wazuh environment for centralized indexing and investigation.
+
+On the Wazuh manager, JSON archive logging and archive indexing were enabled so raw Suricata events could be explored separately from rule-generated Wazuh alerts. Suricata alert events were also visible in the Wazuh alerts index through the Suricata-related Wazuh rule group. This provides two investigation paths: reviewing broader network telemetry in archives and examining IDS detections promoted to Wazuh alerts.
+
+The **SOC – Network Security & Suricata Monitoring** dashboard was created in OpenSearch Dashboards using the indexed Wazuh data. Its visualizations include:
+
+- **Network activity overview:** total Suricata network events and alert counts for the selected time range.
+- **Protocol and event analysis:** DNS, HTTP and TLS event counts, event-type distribution, protocol distribution, and network activity over time.
+- **Source and destination analysis:** frequently observed source and destination IP addresses.
+- **DNS visibility:** most frequently observed DNS query names from the Suricata DNS records.
+- **IDS alert review:** Suricata alert signatures ranked by frequency.
+
+The dashboard supports network monitoring and investigation by helping an analyst pivot from overall event volume to protocols, communicating hosts, queried domains, and IDS signatures. Counts represent indexed event records within the selected time range; they should not be interpreted as unique connections, confirmed incidents, or proof of malicious activity. Informational signatures and benign background traffic require context before being treated as threats.
+
+### Suricata IDS dashboard – overview
+
+The overview screenshot shows the high-level network monitoring metrics and traffic visualizations used to review Suricata telemetry in Wazuh.
+
+![Suricata IDS dashboard overview](Suricata%20IDS%201.jpeg)
+
+### Suricata IDS dashboard – network and alert analysis
+
+The analytics screenshot shows source and destination IP rankings, frequently requested DNS names, Suricata alert signatures, and the distribution of event types. These views support investigation pivots from network endpoints and DNS activity to IDS signature events.
+
+![Suricata IDS dashboard network and alert analytics](Suricata%20IDS%202.jpeg)
+
+
 **Wazuh Threat Hunting**
 These views show alert-level evolution, MITRE ATT&CK technique distribution, top agents, and alert evolution by agent.
 ![Threat Hunting dashboard overview](evidence/screenshots/threat-hunting-overview.jpeg)
@@ -113,7 +144,7 @@ See the [investigation record](docs/investigations/defender-atomic-t1059-001.md)
 | Windows Defender event-channel collection | Configured locally; Defender detections also appear in a Wazuh alert export |
 | Suricata configuration and rules validation | Configuration test passed |
 | Suricata EVE generation | Local DNS and flow events observed |
-| Suricata EVE ingestion into Wazuh | Configured for collection; end-to-end indexing not yet verified |
+| Suricata EVE ingestion into Wazuh | Suricata EVE records verified in Wazuh archives; Suricata alert records verified in Wazuh alerts |
 | Sigma detections | Planned |
 | TheHive case-management integration | Planned |
 
@@ -140,7 +171,8 @@ A real-world engagement would begin with discovery and authorization, followed b
 - `docs/investigations/` — investigation notes and event evidence.
 - `docs/security-and-privacy.md` — safe lab operation and data handling.
 - `docs/service-demonstration-scope.md` — realistic proof-of-concept demonstration scope.
-- `evidence/screenshots/` — SOC and Threat Hunting dashboard captures.\n- `evidence/reports/` — exported Windows Defender alert CSV.\n- `docs/dashboard-overview.md` — dashboard and supplied report interpretation.
+- `evidence/screenshots/` — SOC and Threat Hunting dashboard captures.
+- `Suricata IDS 1.jpeg` and `Suricata IDS 2.jpeg` — Suricata network monitoring dashboard screenshots.\n- `evidence/reports/` — exported Windows Defender alert CSV.\n- `docs/dashboard-overview.md` — dashboard and supplied report interpretation.
 
 ## Safety and responsible use
 
